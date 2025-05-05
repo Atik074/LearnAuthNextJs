@@ -16,7 +16,7 @@ async function onSubmit(e) {
         const formData = new FormData(e.currentTarget)
         const response = await login(formData)
    
-        if(response.error){
+        if(!!response.error){
            console.error(response.error)
         }else{
             router.push('/bookings')
@@ -31,7 +31,7 @@ async function onSubmit(e) {
 
     return (
         <>
-            <div className="text-xl text-red-500">{error}</div>
+            <div className="text-xl text-red-500">{error?.message}</div>
             <form className="login-form" onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="email">Email Address</label>
@@ -43,7 +43,7 @@ async function onSubmit(e) {
                     <input type="password" name="password" id="password" />
                 </div>
 
-                <button type="submit" className="btn-primary w-full mt-4">
+                <button type="submit" className="btn-primary w-1/4 mt-4 bg-amber-600 p-4 text-xl rounded-b-full ">
                     Login
                 </button>
             </form>

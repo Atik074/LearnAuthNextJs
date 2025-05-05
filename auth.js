@@ -4,11 +4,16 @@ import GoogleProvider from "next-auth/providers/google"
 import mongoClientPromise from "./lib/mongoClientPromise";
 import Credentials from "next-auth/providers/credentials"
 import { userModel } from "./model/user-model";
+import { dbConnect } from "./lib/mongo";
 
 
 
 
-export const  {auth, handlers:{GET , POST}, signIn, signOut }  = NextAuth({
+export const  {  
+handlers: { GET, POST },
+auth,
+signIn,
+signOut }  = NextAuth({
     adapter:MongoDBAdapter(mongoClientPromise ,{databaseName:process.env.ENVIRONMENT}) ,
     session:{
         strategy:"jwt"
@@ -25,6 +30,7 @@ export const  {auth, handlers:{GET , POST}, signIn, signOut }  = NextAuth({
 
          async  authorize(credentials) {
              if(credentials === null) return nul ;
+             await dbConnect()
 
              try{
                  const user = await userModel.findOne({email:credentials?.email})

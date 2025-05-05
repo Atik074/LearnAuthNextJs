@@ -1,5 +1,5 @@
 "use server"
-import { signOut , signIn } from "@/auth"
+import { signIn, signOut } from "@/auth";
 
 
 
@@ -13,14 +13,16 @@ import { signOut , signIn } from "@/auth"
 }
 
 export async function login(formData) {
-   try{
-     const response = await signIn("credentials" ,{
-         email : formData.get("email"),
-        password: formData.get(" password"),
-        redirect:false
-      })
-      return response ;
-   }catch(err){throw err}
-  
-   
-}
+    try {
+      const response = await signIn("credentials", {
+        email: formData.get("email"),
+        password: formData.get("password"),
+        redirect: false,
+      });
+      return response;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+

@@ -13,11 +13,12 @@ const userSchema = new Schema({
  
  
 image: {
-    required: true,
+    required: false,
     type: String,
   }
 
 });
 
 export const userModel =
-  mongoose.models("users") ?? mongoose.model("users", userSchema);
+  mongoose.models.users ?? mongoose.model("users", userSchema);
+
