@@ -24,14 +24,14 @@ async function onSubmit(e) {
            
     }catch(err){
           console.log(err)
-          setError(err)
+          setError(err.message)
     }
        
     }
 
     return (
         <>
-            <div className="text-xl text-red-500">{error?.message}</div>
+            <div className="text-xl text-red-500">{error}</div>
             <form className="login-form" onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="email">Email Address</label>
@@ -43,7 +43,7 @@ async function onSubmit(e) {
                     <input type="password" name="password" id="password" />
                 </div>
 
-                <button type="submit" className="btn-primary w-1/4 mt-4 bg-amber-600 p-4 text-xl rounded-b-full ">
+                <button type="submit" className="btn-primary w-1/4 mt-4 bg-amber-600 p-4 text-xl rounded-b-full cursor-pointer">
                     Login
                 </button>
             </form>
